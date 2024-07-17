@@ -1,0 +1,242 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsthm}
+\usepackage{mathtools}
+
+\usepackage[inline]{enumitem}
+\usepackage{ifthen}
+\usepackage[utf8]{inputenc} %allows non-ascii in bib file
+\usepackage{xcolor}
+
+\usepackage[backend=biber, backref=true, maxbibnames = 10, style = alphabetic]{biblatex}
+\usepackage[bookmarks=true, colorlinks=true, linkcolor=blue!50!black,
+citecolor=orange!50!black, urlcolor=orange!50!black, pdfencoding=unicode]{hyperref}
+\usepackage[capitalize]{cleveref}
+
+\usepackage{tikz}
+
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+\usepackage{dutchcal}
+\usepackage{fontawesome}
+\usepackage{stmaryrd}
+
+% cleveref %
+  \newcommand{\creflastconjunction}{, and\nobreakspace} % serial comma
+  \crefformat{enumi}{\card#2#1#3}
+  \crefalias{chapter}{section}
+
+
+% hyperref %
+  \hypersetup{final}
+
+% enumitem %
+  \setlist{nosep}
+  \setlistdepth{6}
+
+
+
+% tikz %
+
+
+
+  \usetikzlibrary{ 
+  	cd,
+  	math,
+  	decorations.markings,
+		decorations.pathreplacing,
+  	positioning,
+  	arrows.meta,
+  	shapes,
+		shadows,
+		shadings,
+  	calc,
+  	fit,
+  	quotes,
+  	intersections,
+    circuits,
+    circuits.ee.IEC
+  }
+  
+
+
+
+%-------- Renewed commands --------%
+
+\renewcommand{\ss}{\subseteq}
+
+%-------- Other Macros --------%
+
+
+
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Mor}{Mor}
+\DeclareMathOperator{\dom}{dom}
+\DeclareMathOperator{\cod}{cod}
+\DeclareMathOperator{\idy}{idy}
+\DeclareMathOperator{\comp}{com}
+\DeclareMathOperator*{\colim}{colim}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\ob}{Ob}
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\el}{El}
+\DeclareMathOperator{\Funn}{Fun}
+
+\newcommand{\Set}[1]{\mathsf{#1}}%a named set
+\newcommand{\ord}[1]{\mathsf{#1}}%an ordinal
+\newcommand{\cat}[1]{\mathcal{#1}}%a generic category
+\newcommand{\Cat}[1]{\mathbf{#1}}%a named category
+\newcommand{\fun}[1]{\mathrm{#1}}%a function
+\newcommand{\Fun}[1]{\mathit{#1}}%a named functor
+
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\ox}{\otimes}
+\newcommand{\Poly}{{\sf Poly}}
+
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\then}{\mathbin{\fatsemi}}
+
+\newcommand{\cocolon}{:\!}
+
+
+\newcommand{\iso}{\cong}
+\newcommand{\too}{\longrightarrow}
+\newcommand{\tto}{\rightrightarrows}
+\newcommand{\To}[2][]{\xrightarrow[#1]{#2}}
+\renewcommand{\Mapsto}[1]{\xmapsto{#1}}
+\newcommand{\Tto}[3][13pt]{\begin{tikzcd}[sep=#1, cramped, ampersand replacement=\&, text height=1ex, text depth=.3ex]\ar[r, shift left=2pt, "#2"]\ar[r, shift right=2pt, "#3"']\&{}\end{tikzcd}}
+\newcommand{\Too}[1]{\xrightarrow{\;\;#1\;\;}}
+\newcommand{\from}{\leftarrow}
+\newcommand{\fromm}{\longleftarrow}
+\newcommand{\ffrom}{\leftleftarrows}
+\newcommand{\From}[1]{\xleftarrow{#1}}
+\newcommand{\Fromm}[1]{\xleftarrow{\;\;#1\;\;}}
+\newcommand{\surj}{\twoheadrightarrow}
+\newcommand{\inj}{\hookrightarrow}
+\newcommand{\wavyto}{\rightsquigarrow}
+\newcommand{\lollipop}{\multimap}
+\newcommand{\imp}{\Rightarrow}
+\newcommand{\down}{\mathbin{\downarrow}}
+\newcommand{\fromto}{\leftrightarrows}
+\newcommand{\tickar}{\xtickar{}}
+\newcommand{\slashar}{\xslashar{}}
+
+
+\newcommand{\inv}{^{-1}}
+\newcommand{\op}{^\tn{op}}
+
+\newcommand{\tn}[1]{\textnormal{#1}}
+\newcommand{\ol}[1]{\overline{#1}}
+\newcommand{\ul}[1]{\underline{#1}}
+\newcommand{\wt}[1]{\widetilde{#1}}
+\newcommand{\wh}[1]{\widehat{#1}}
+\newcommand{\wc}[1]{\widecheck{#1}}
+\newcommand{\ubar}[1]{\underaccent{\bar}{#1}}
+
+
+
+\newcommand{\bb}{\mathbb{B}}
+\newcommand{\cc}{\mathbb{C}}
+\newcommand{\nn}{\mathbb{N}}
+\newcommand{\pp}{\mathbb{P}}
+\newcommand{\qq}{\mathbb{Q}}
+\newcommand{\zz}{\mathbb{Z}}
+\newcommand{\rr}{\mathbb{R}}
+
+
+\newcommand{\finset}{\Cat{Fin}}
+\newcommand{\smset}{\Cat{Set}}
+\newcommand{\lgset}{\Cat{SET}}
+\newcommand{\smcat}{\Cat{Cat}}
+\newcommand{\lgcat}{\Cat{CAT}}
+\newcommand{\prof}{\mathbb{P}\Cat{rof}}
+
+\newcommand{\set}{\tn{-}\Cat{Set}}
+\newcommand{\coalg}{\tn{-}\Cat{Coalg}}
+\newcommand{\const}[1][\blank]{#1 !}
+
+\newcommand{\hh}[2][]{#1 \tn{\textit{#2}} #1}
+\newcommand{\qqand}{\hh[\qquad]{and}}
+\newcommand{\qand}{\hh[\quad]{and}}
+\renewcommand{\iff}[1][\;\;]{#1\Leftrightarrow#1}
+\newcommand{\ifff}[1][\;\;]{#1\xLeftrightarrow{\quad}#1}
+\newcommand{\hi}[4][]{#1 #2 \tn{\textit{#4}} #3}
+\newcommand{\where}[1][,]{\hi[#1]{\qquad}{\quad}{where}}
+\newcommand{\qimplies}{\hh[\quad]{$\implies$}}
+
+\newcommand{\lott}{\mathit{lott}}
+\newcommand{\yon}{\mathcal{y}}
+
+
+\newcommand{\dnote}[1]{{\quad \color{blue}$\lozenge$\;David says:}~#1\;{\color{blue}$\lozenge$}\quad}
+\newcommand{\pnote}[1]{{\quad \color{red}$\lozenge$\;Priyaa says:}~#1\;{\color{red}$\lozenge$}\quad}
+
+
+\title{The ``typical'' $[\lott,\yon]$-coalgebra}
+\title{Does God play dice? Or...\\What's the best $[\lott,\yon]$-coalgebra?}
+\author{
+   David Spivak \quad \quad \quad Priyaa Varshinee Srinivasan}
+\date{\vspace{-.1in}}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+
+\end{abstract}
+
+\section{Introduction}
+
+Einstein famously said ``God does not play dice" in response to... quantum something. But also in computers we need to \emph{sample} from probability distributions. So what does play dice? In this post we'll explain how this question relates to another one: what is the best $[\lott,\yon]$-coalgebra? We'll explain how a $[\lott,\yon]$-coalgebra is a winning-ticket-picker for lotteries, and explain a few senses in which one may consider one the best!
+
+\paragraph{Acknowledgements.} Thanks to Maxine Collard for useful conversations.
+
+\section{Reviewing polynomials and lotteries}
+See other blog post, pick interesting things. For example, the polynomial, what the monad multiplication means. Also, recall $\otimes$ and $[-,-]$ and what $[\lott,\yon]$ means.
+%
+%For any finite set $N$, define $\Delta_N$ to be the set of probability distributions on $N$, 
+%
+%\[ \Delta_N := \left \{  P: N \to [0,1] \mid  1 = \sum_{n:N} P_n \right \} \]
+%
+%\[ \lott = \sum_{N:\N} \sum_{p: \Delta_N} y^N  \]
+%
+%For any two polynomials $p = \sum_{P:p(1)}$ and $q$,
+%\begin{align*}
+% p \ox q &= \sum_{P: p(1)} \yon^{p[P]} \ox \sum_{Q: q(1)} \yon^{q[Q]} := \sum_{(P,Q): p(1) \times q(1)} \yon^{p[P] \times q[Q]} \\
+% [p,q] &= \prod_{P:p(1)} \sum_{Q: q(1)} \prod_{e: q[Q]} \sum_{d:p[P]} 1 
+% \end{align*}
+%
+%\begin{align}
+%\nonumber
+%\Poly(p,q) &= \Poly\left(\sum_{i:P} \yon^{p[P]}, q\right) \\\nonumber
+%&\cong \prod_{P:p(1)} \Poly\left(\yon^{p[P]}, q\right) & \text{Universal property of coproduct}\\ \nonumber
+%&\cong \prod_{P:p(1)} q(p[P]) &  \text{Yoneda Lemma} \\  \nonumber
+%& \cong \prod_{P:p(1)} \sum_{Q: q(1)} p[P]^{q[Q]} \\\label{eqn.poly_map}
+%& = \prod_{P:p(1)} \sum_{Q: q(1)} \prod_{e: q[Q]} \sum_{d:p[P]} 1 
+%\end{align}
+
+\section{Typical sequences and Martin-L\"of randomness}
+
+\dnote{Priyaa, see \url{https://chatgpt.com/share/20a5704c-6c87-4f49-9b57-4e632c312e38}}
+
+A $[\lott,\yon]$-coalgebra consists of a set $S$ and a function $S\to[\lott,\yon](S)$. We say that it is \emph{typical} if, for any $s\in S$ the sequence is typical. We say that it is \emph{algorithmically random} if, for any $s\in S$ the sequence is algorithmically random.
+
+
+
+
+\section{The ``God machine''}
+
+Albert Einstein's God did not play dice, but perhaps David Bohm's ``guiding wave'' does. Here we consider the idea of a machine, which Priyaa calls the "God machine", that picks a winning ticket from any named lottery. 
+
+Construction: for each lottery $(N,P)$, a stream $s_{N,P}:\nn\to N$ that's typical, algorithmically random, etc. The coalgebra outputs these, and then for each actual choice $(N,P)$ of lottery played, it rips off one ticket. (Write this as a formula.)
+
+This has the property that for any list $(N_1,P_1),\ldots(N_k,P_k)$ with each $(N_i,P_i)\neq (N,P)$, one has $(s.(N_1,P_)\ldots(N_k,P_k))(N,P))=s(N,P)$, i.e.\ that playing one lottery cannot affect which ticket is poised to win another lottery. 
+
+Prove that if $s$ is typical, then for any lottery $(N,P)$, the stream $s.(N,P)$ is also typical; same for algorithmically random. This means that typicality and algorithmic randomness define propositions in the internal logic of the topos $[\lott,\yon]\coalg$.
+
+That is, you might say that the terminal coalgebra such that every element of it is typical is best!
+
+
+\end{document}
